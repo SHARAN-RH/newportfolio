@@ -55,7 +55,7 @@ const Header: React.FC = () => {
           <div className="flex items-center space-x-2">
             <Code className={`w-8 h-8 ${isDark ? 'text-indigo-400' : 'text-indigo-600'}`} />
             <span className={`text-xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>
-              Adam Eve
+              Sharan H
             </span>
           </div>
 
