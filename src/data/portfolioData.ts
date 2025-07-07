@@ -1,11 +1,11 @@
 export const personalInfo = {
-  name: "ADAM EVE",
+  name: "Sharan H",
   title: "Aspiring DevOps Engineer",
   description: "About me: Master of Computer Applications graduate focused on scalable infrastructure, automation, and intelligent workflows.",
   email: "adam.eve@email.com",
   phone: "+1 (555) 123-4567",
-  github: "https://github.com/adameve",
-  linkedin: "https://linkedin.com/in/adameve",
+  github: "https://github.com/sharan-rh",
+  linkedin: "https://linkedin.com/in/sharanrh",
   resumeUrl: "/resume.pdf"
 };
 
