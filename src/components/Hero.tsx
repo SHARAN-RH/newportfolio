@@ -107,7 +107,7 @@ const Hero: React.FC = () => {
             <div>
               <h1 className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 ${
                 isDark ? 'text-white' : 'text-slate-900'
-              } break-words`}>
+              } break-words font-akronim`}>
                 <span className={`${showNameCursor ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}
                   style={{ color: isDark ? '#00BFFF' : '#0080FF' }}>
                   •
