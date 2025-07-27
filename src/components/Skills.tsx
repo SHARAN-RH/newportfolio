@@ -66,7 +66,7 @@ const Skills: React.FC = () => {
               onMouseLeave={() => setHoveredSkill(null)}
             >
               {/* Skill Icon */}
-              <div className={`relative p-4 sm:p-6 rounded-xl transition-all duration-300 ${
+              <div className={`relative p-4 sm:p-6 rounded-full transition-all duration-300 ${
                 hoveredSkill === skill.name
                   ? 'transform scale-110 z-10'
                   : hoveredSkill && hoveredSkill !== skill.name
