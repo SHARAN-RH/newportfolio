@@ -2,11 +2,11 @@ export const personalInfo = {
   name: "Sharan H",
   title: "Aspiring DevOps Engineer",
   description: "About me: Master of Computer Applications graduate focused on scalable infrastructure, automation, and intelligent workflows.",
-  email: "adam.eve@email.com",
-  phone: "+1 (555) 123-4567",
+  email: "sharanrhiremani@gmail.com",
+  phone: "+91 8618733015",
   github: "https://github.com/sharan-rh",
   linkedin: "https://linkedin.com/in/sharanrh",
-  resumeUrl: "/resume.pdf"
+  resumeUrl: "/Sharan_Hiremani_Resume.pdf"
 };
 
 export const skills = [
@@ -100,8 +100,8 @@ export const certifications = [
 export const experience = [
   {
     title: "Junior IoT Developer Intern",
-    company: "ABC Technologies",
-    location: "Remote",
+    company: "SpaceZee Technologies",
+    location: "Chennai, TN",
     period: "April 2024 - Sep 2024",
     achievements: [
       "Developed IoT data pipeline using Python and AWS services, processing 10K+ sensor readings daily",
@@ -111,10 +111,10 @@ export const experience = [
     ]
   },
   {
-    title: "DevOps Engineering Trainee",
-    company: "TechStart Solutions",
-    location: "Hybrid",
-    period: "Jan 2024 - Mar 2024",
+    title: "Junior Developer Intern",
+    company: "Osvan Technologies",
+    location: "Canada (Remote)",
+    period: "Jan 2024 - Present",
     achievements: [
       "Assisted in migrating legacy applications to containerized architecture using Docker",
       "Participated in infrastructure automation projects with Ansible and Terraform",
@@ -127,18 +127,18 @@ export const experience = [
 export const education = [
   {
     degree: "Master of Computer Applications",
-    institution: "University of Technology",
-    location: "California, USA",
-    year: "2023",
-    gpa: "3.8/4.0",
+    institution: "KLS Gogte Institute of Technologies",
+    location: "Belagavi, Karnataka",
+    year: "2024",
+    cgpa: "7.1/10.0",
     distinction: "Magna Cum Laude"
   },
   {
-    degree: "Bachelor of Computer Science",
-    institution: "State University",
-    location: "California, USA",
+    degree: "Bachelor of Computer Applications",
+    institution: "SKE's GS Science College",
+    location: "Belagavi, Karnataka",
     year: "2021",
-    gpa: "3.6/4.0",
+    gpa: "7.9/10.0",
     distinction: "Cum Laude"
   }
 ];
@@ -149,23 +149,5 @@ export const blogs = [
     snippet: "A comprehensive guide to deploying and managing Kubernetes clusters in production environments with security and scalability in mind.",
     platform: "Medium",
     url: "https://medium.com/@adameve/kubernetes-best-practices"
-  },
-  {
-    title: "Infrastructure as Code with Terraform",
-    snippet: "Learn how to manage cloud infrastructure efficiently using Terraform modules and best practices for team collaboration.",
-    platform: "LinkedIn",
-    url: "https://linkedin.com/pulse/infrastructure-code-terraform-adam-eve"
-  },
-  {
-    title: "CI/CD Pipeline Security: A DevOps Perspective",
-    snippet: "Exploring security considerations in CI/CD pipelines and implementing security scanning in automated workflows.",
-    platform: "Dev.to",
-    url: "https://dev.to/adameve/cicd-pipeline-security"
-  },
-  {
-    title: "Monitoring Microservices with Prometheus",
-    snippet: "Setting up comprehensive monitoring for microservices architecture using Prometheus, Grafana, and alerting best practices.",
-    platform: "Medium",
-    url: "https://medium.com/@adameve/monitoring-microservices-prometheus"
   }
 ];
