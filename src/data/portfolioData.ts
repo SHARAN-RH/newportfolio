@@ -131,7 +131,7 @@ export const education = [
     location: "Belagavi, Karnataka",
     year: "2024",
     cgpa: "7.1/10.0",
-    distinction: "Magna Cum Laude"
+    
   },
   {
     degree: "Bachelor of Computer Applications",
@@ -139,7 +139,7 @@ export const education = [
     location: "Belagavi, Karnataka",
     year: "2021",
     gpa: "7.9/10.0",
-    distinction: "Cum Laude"
+    
   }
 ];
 
