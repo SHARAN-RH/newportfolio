@@ -66,36 +66,36 @@ export const projects = [
   }
 ];
 
-export const certifications = [
-  {
-    title: "AWS Solutions Architect Associate",
-    issuer: "Amazon Web Services",
-    year: "2024",
-    skills: ["Cloud Architecture", "Security", "Scalability", "Cost Optimization"],
-    url: "https://aws.amazon.com/certification/"
-  },
-  {
-    title: "Certified Kubernetes Administrator (CKA)",
-    issuer: "Cloud Native Computing Foundation",
-    year: "2024",
-    skills: ["Cluster Management", "Networking", "Security", "Troubleshooting"],
-    url: "https://cncf.io/certification/cka/"
-  },
-  {
-    title: "Docker Certified Associate",
-    issuer: "Docker Inc.",
-    year: "2023",
-    skills: ["Container Orchestration", "Image Management", "Security", "Networking"],
-    url: "https://docker.com/certification/"
-  },
-  {
-    title: "Red Hat Certified System Administrator",
-    issuer: "Red Hat",
-    year: "2023",
-    skills: ["Linux Administration", "System Security", "Automation", "Troubleshooting"],
-    url: "https://redhat.com/certification/"
-  }
-];
+// export const certifications = [
+//   {
+//     title: "AWS Solutions Architect Associate",
+//     issuer: "Amazon Web Services",
+//     year: "2024",
+//     skills: ["Cloud Architecture", "Security", "Scalability", "Cost Optimization"],
+//     url: "https://aws.amazon.com/certification/"
+//   },
+//   {
+//     title: "Certified Kubernetes Administrator (CKA)",
+//     issuer: "Cloud Native Computing Foundation",
+//     year: "2024",
+//     skills: ["Cluster Management", "Networking", "Security", "Troubleshooting"],
+//     url: "https://cncf.io/certification/cka/"
+//   },
+//   {
+//     title: "Docker Certified Associate",
+//     issuer: "Docker Inc.",
+//     year: "2023",
+//     skills: ["Container Orchestration", "Image Management", "Security", "Networking"],
+//     url: "https://docker.com/certification/"
+//   },
+//   {
+//     title: "Red Hat Certified System Administrator",
+//     issuer: "Red Hat",
+//     year: "2023",
+//     skills: ["Linux Administration", "System Security", "Automation", "Troubleshooting"],
+//     url: "https://redhat.com/certification/"
+//   }
+// ];
 
 export const experience = [
   {
