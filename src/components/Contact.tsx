@@ -1,270 +1,201 @@
-import React, { useState } from 'react';
-import { MessageCircle, Mail, Phone, Github, Linkedin, Send, X } from 'lucide-react';
-import { useTheme } from '../contexts/ThemeContext';
+import { motion } from 'framer-motion';
+import { Mail, Phone, MapPin, Github, Linkedin, CheckCircle, Globe, Download, Heart, MessageCircle } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
 
-const Contact: React.FC = () => {
-  const [isChatOpen, setIsChatOpen] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
-  const { isDark } = useTheme();
+const Contact = () => {
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
+  const socialLinks = [
+    { icon: Github, label: 'GitHub', href: personalInfo.github },
+    { icon: Linkedin, label: 'LinkedIn', href: personalInfo.linkedin },
+    { icon: Globe, label: 'Medium', href: 'https://medium.com/@sharan-rh' },
+    { icon: Mail, label: 'Email', href: `mailto:${personalInfo.email}` },
+    { icon: MessageCircle, label: 'WhatsApp', href: `https://wa.me/${personalInfo.phone.replace(/[^0-9]/g, '')}` }
+  ];
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    // Create mailto link with form data
-    const subject = encodeURIComponent(`Portfolio Contact from ${formData.name}`);
-    const body = encodeURIComponent(`
-Name: ${formData.name}
-Email: ${formData.email}
-
-Message:
-${formData.message}
-    `);
-    
-    window.open(`mailto:${personalInfo.email}?subject=${subject}&body=${body}`);
-    
-    // Reset form
-    setFormData({ name: '', email: '', message: '' });
-    setIsChatOpen(false);
-  };
-
-  const handleContactClick = (type: string) => {
-    switch (type) {
-      case 'email':
-        window.open(`mailto:${personalInfo.email}`, '_blank');
-        break;
-      case 'phone':
-        window.open(`tel:${personalInfo.phone}`, '_blank');
-        break;
-      case 'github':
-        window.open(personalInfo.github, '_blank');
-        break;
-      case 'linkedin':
-        window.open(personalInfo.linkedin, '_blank');
-        break;
-    }
-  };
 
   return (
-    <>
-      <section id="contact" className={`py-20 ${isDark ? 'bg-slate-800' : 'bg-slate-100'}`}>
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className={`text-4xl md:text-5xl font-bold mb-4 ${isDark ? 'text-white' : 'text-slate-900'}`}>
-              Get In Touch
-            </h2>
-            <p className={`text-lg ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
-              Let's discuss your next DevOps project or collaboration opportunity
+    <footer className="bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-gray-900 dark:to-blue-950 border-t border-slate-200 dark:border-slate-700" id="contact">
+      <div className="max-w-7xl mx-auto px-6 py-16">
+        {/* Section Header */}
+        <motion.div 
+          className="mb-6"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="flex items-center gap-4 w-full mb-4">
+            <motion.div 
+              className="h-px bg-gradient-to-r from-purple-600 to-blue-600 flex-1 max-w-20"
+              initial={{ width: 0 }}
+              whileInView={{ width: "5rem" }}
+              transition={{ delay: 0.2, duration: 0.8 }}
+            />
+            <motion.h2 
+              className="text-3xl md:text-4xl font-bold leading-none"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+            >
+              <span className="block text-gray-900 dark:text-white">
+                CONTACTS
+              </span>
+            </motion.h2>
+            <motion.div 
+              className="h-px bg-gradient-to-r from-blue-600 to-purple-600 flex-1"
+              initial={{ width: 0 }}
+              whileInView={{ width: "100%" }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+            />
+          </div>
+        </motion.div>
+
+        {/* Main Content - No Background Container */}
+        <div className="max-w-6xl mx-auto mb-12">
+          <div className="p-8">
+            <div className="grid lg:grid-cols-5 gap-12">
+              {/* Left Side - Main CTA */}
+              <div className="lg:col-span-2">
+                <div className="mb-6">
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                    Let's Collaborate
+                  </h3>
+                  <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-purple-600"></div>
+                </div>
+                <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300 mb-6">
+                  Ready to discuss your next project or explore opportunities together? 
+                  I specialize in DevOps, automation, and scalable infrastructure solutions.
+                </p>
+                <div className="mb-6 p-3 bg-green-50 dark:bg-green-900/20 rounded-xl border border-green-200 dark:border-green-800">
+                  <p className="text-xs text-green-700 dark:text-green-300 flex items-center font-medium">
+                    <CheckCircle className="w-4 h-4 mr-2" />
+                    Available for freelance projects and full-time opportunities
+                  </p>
+                </div>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <motion.a
+                    href={personalInfo.resumeUrl}
+                    download
+                    className="flex items-center justify-center gap-3 bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-colors duration-300 shadow-lg"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <Download className="w-5 h-5" />
+                    <div className="text-left">
+                      <div className="text-sm font-semibold">Download Resume</div>
+                    </div>
+                  </motion.a>
+                  <motion.a
+                    href={`mailto:${personalInfo.email}`}
+                    className="flex items-center justify-center gap-3 bg-transparent border-2 border-black text-black px-6 py-3 rounded-lg hover:bg-black hover:text-white transition-colors duration-300 shadow-lg"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <Mail className="w-5 h-5" />
+                    <div className="text-left">
+                      <div className="text-sm font-semibold">Start Conversation</div>
+                    </div>
+                  </motion.a>
+                </div>
+              </div>
+
+              {/* Right Side - Contact Info */}
+              <div className="lg:col-span-3 space-y-8">
+                {/* Contact Information */}
+                <div>
+                  <div className="mb-4">
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                      Get In Touch
+                    </h3>
+                    <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-purple-600"></div>
+                  </div>
+                  
+                  {/* Contact Information with Text */}
+                  <div className="mb-8 space-y-4">
+                    {/* Email - Full Width */}
+                    <div className="flex items-center space-x-3">
+                      <Mail className="w-5 h-5 text-slate-600 dark:text-slate-400" />
+                      <div>
+                        <p className="text-sm font-bold text-gray-900 dark:text-white">Email</p>
+                        <motion.a
+                          href={`mailto:${personalInfo.email}`}
+                          className="text-xs text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors duration-300"
+                          whileHover={{ scale: 1.02 }}
+                        >
+                          {personalInfo.email}
+                        </motion.a>
+                      </div>
+                    </div>
+                    
+                    {/* Phone and Location - Side by Side */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="flex items-center space-x-3">
+                        <Phone className="w-5 h-5 text-slate-600 dark:text-slate-400" />
+                        <div>
+                          <p className="text-sm font-bold text-gray-900 dark:text-white">Phone</p>
+                          <motion.a
+                            href={`tel:${personalInfo.phone}`}
+                            className="text-xs text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors duration-300"
+                            whileHover={{ scale: 1.02 }}
+                          >
+                            {personalInfo.phone}
+                          </motion.a>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-center space-x-3">
+                        <MapPin className="w-5 h-5 text-slate-600 dark:text-slate-400" />
+                        <div>
+                          <p className="text-sm font-bold text-gray-900 dark:text-white">Location</p>
+                          <p className="text-xs text-gray-600 dark:text-gray-400">Bengaluru, India</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Professional Links */}
+                <div>
+                  <div className="mb-4">
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                      Professional Links
+                    </h3>
+                    <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-purple-600"></div>
+                  </div>
+                  
+                  {/* Professional Links Icons */}
+                  <div className="flex flex-wrap gap-3">
+                    {socialLinks.map((link) => (
+                      <motion.a
+                        key={link.label}
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title={link.label}
+                        className="p-3 text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300"
+                        whileHover={{ scale: 1.1, y: -2 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <link.icon className="w-5 h-5" />
+                      </motion.a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer Bottom */}
+        <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-800">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <p className="text-xs text-gray-600 dark:text-gray-400">
+              © {new Date().getFullYear()} {personalInfo.name}
             </p>
           </div>
-
-          <div className="max-w-4xl mx-auto">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-              {/* Email */}
-              <div
-                onClick={() => handleContactClick('email')}
-                className={`hoverable group p-6 lg:p-8 rounded-xl text-center transition-all duration-300 cursor-pointer ${
-                  isDark ? 'bg-slate-700 hover:bg-slate-600' : 'bg-white hover:bg-slate-50'
-                } shadow-lg hover:shadow-2xl transform hover:scale-105`}
-              >
-                <div className={`w-12 h-12 lg:w-16 lg:h-16 mx-auto mb-4 rounded-full flex items-center justify-center ${
-                  isDark ? 'bg-indigo-900 text-indigo-400' : 'bg-indigo-100 text-indigo-600'
-                } group-hover:scale-110 transition-transform duration-300`}>
-                  <Mail className="w-6 h-6 lg:w-8 lg:h-8" />
-                </div>
-                <h3 className={`text-lg font-semibold mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                  Email
-                </h3>
-                <p className={`${isDark ? 'text-slate-300' : 'text-slate-600'} text-sm lg:text-base break-all`}>
-                  {personalInfo.email}
-                </p>
-              </div>
-
-              {/* Phone */}
-              <div
-                onClick={() => handleContactClick('phone')}
-                className={`hoverable group p-6 lg:p-8 rounded-xl text-center transition-all duration-300 cursor-pointer ${
-                  isDark ? 'bg-slate-700 hover:bg-slate-600' : 'bg-white hover:bg-slate-50'
-                } shadow-lg hover:shadow-2xl transform hover:scale-105`}
-              >
-                <div className={`w-12 h-12 lg:w-16 lg:h-16 mx-auto mb-4 rounded-full flex items-center justify-center ${
-                  isDark ? 'bg-indigo-900 text-indigo-400' : 'bg-indigo-100 text-indigo-600'
-                } group-hover:scale-110 transition-transform duration-300`}>
-                  <Phone className="w-6 h-6 lg:w-8 lg:h-8" />
-                </div>
-                <h3 className={`text-lg font-semibold mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                  Phone
-                </h3>
-                <p className={`${isDark ? 'text-slate-300' : 'text-slate-600'} text-sm lg:text-base`}>
-                  {personalInfo.phone}
-                </p>
-              </div>
-
-              {/* GitHub */}
-              <div
-                onClick={() => handleContactClick('github')}
-                className={`hoverable group p-6 lg:p-8 rounded-xl text-center transition-all duration-300 cursor-pointer ${
-                  isDark ? 'bg-slate-700 hover:bg-slate-600' : 'bg-white hover:bg-slate-50'
-                } shadow-lg hover:shadow-2xl transform hover:scale-105`}
-              >
-                <div className={`w-12 h-12 lg:w-16 lg:h-16 mx-auto mb-4 rounded-full flex items-center justify-center ${
-                  isDark ? 'bg-indigo-900 text-indigo-400' : 'bg-indigo-100 text-indigo-600'
-                } group-hover:scale-110 transition-transform duration-300`}>
-                  <Github className="w-6 h-6 lg:w-8 lg:h-8" />
-                </div>
-                <h3 className={`text-lg font-semibold mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                  GitHub
-                </h3>
-                <p className={`${isDark ? 'text-slate-300' : 'text-slate-600'} text-sm lg:text-base`}>
-                  View Projects
-                </p>
-              </div>
-
-              {/* LinkedIn */}
-              <div
-                onClick={() => handleContactClick('linkedin')}
-                className={`hoverable group p-6 lg:p-8 rounded-xl text-center transition-all duration-300 cursor-pointer ${
-                  isDark ? 'bg-slate-700 hover:bg-slate-600' : 'bg-white hover:bg-slate-50'
-                } shadow-lg hover:shadow-2xl transform hover:scale-105`}
-              >
-                <div className={`w-12 h-12 lg:w-16 lg:h-16 mx-auto mb-4 rounded-full flex items-center justify-center ${
-                  isDark ? 'bg-indigo-900 text-indigo-400' : 'bg-indigo-100 text-indigo-600'
-                } group-hover:scale-110 transition-transform duration-300`}>
-                  <Linkedin className="w-6 h-6 lg:w-8 lg:h-8" />
-                </div>
-                <h3 className={`text-lg font-semibold mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                  LinkedIn
-                </h3>
-                <p className={`${isDark ? 'text-slate-300' : 'text-slate-600'} text-sm lg:text-base`}>
-                  Connect
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
-      </section>
-
-      {/* Sticky Chat Button */}
-      <button
-        onClick={() => setIsChatOpen(true)}
-        className={`hoverable fixed bottom-6 right-6 w-16 h-16 rounded-full shadow-2xl transition-all duration-300 z-30 ${
-          isDark ? 'bg-blue-600 hover:bg-blue-700' : 'bg-blue-500 hover:bg-blue-600'
-        } text-white hover:scale-110`}
-        style={{
-          boxShadow: isDark 
-            ? '0 0 20px rgba(0, 191, 255, 0.5)' 
-            : '0 0 20px rgba(0, 128, 255, 0.5)',
-        }}
-      >
-        <MessageCircle className="w-8 h-8 mx-auto" />
-      </button>
-
-      {/* Chat Modal - Slides out from the chat button */}
-      {isChatOpen && (
-        <div className="fixed inset-0 z-50 flex items-end justify-end p-4 pointer-events-none">
-          <div 
-            className={`w-full max-w-md rounded-xl shadow-2xl pointer-events-auto transform transition-all duration-300 ${
-              isDark ? 'bg-slate-800' : 'bg-white'
-            } ${isChatOpen ? 'translate-x-0 translate-y-0 opacity-100' : 'translate-x-full translate-y-full opacity-0'}`}
-            style={{
-              marginRight: '1rem',
-              marginBottom: '5rem', // Position above the chat button
-            }}
-          >
-            {/* Header */}
-            <div className={`flex items-center justify-between p-6 border-b ${
-              isDark ? 'border-slate-700' : 'border-slate-200'
-            }`}>
-              <h3 className={`text-lg font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                Send a Message
-              </h3>
-              <button
-                onClick={() => setIsChatOpen(false)}
-                className={`hoverable p-2 rounded-lg transition-colors ${
-                  isDark ? 'text-slate-400 hover:text-white hover:bg-slate-700' : 'text-slate-500 hover:text-slate-700 hover:bg-slate-100'
-                }`}
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            {/* Form */}
-            <form onSubmit={handleSubmit} className="p-6 space-y-4">
-              <div>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Your Name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  required
-                  className={`w-full px-4 py-3 rounded-lg border transition-colors ${
-                    isDark
-                      ? 'bg-slate-700 border-slate-600 text-white placeholder-slate-400 focus:border-blue-500'
-                      : 'bg-white border-slate-300 text-slate-900 placeholder-slate-500 focus:border-blue-500'
-                  } focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50`}
-                />
-              </div>
-
-              <div>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Your Email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  required
-                  className={`w-full px-4 py-3 rounded-lg border transition-colors ${
-                    isDark
-                      ? 'bg-slate-700 border-slate-600 text-white placeholder-slate-400 focus:border-blue-500'
-                      : 'bg-white border-slate-300 text-slate-900 placeholder-slate-500 focus:border-blue-500'
-                  } focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50`}
-                />
-              </div>
-
-              <div>
-                <textarea
-                  name="message"
-                  placeholder="Your Message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  required
-                  rows={4}
-                  className={`w-full px-4 py-3 rounded-lg border transition-colors resize-none ${
-                    isDark
-                      ? 'bg-slate-700 border-slate-600 text-white placeholder-slate-400 focus:border-blue-500'
-                      : 'bg-white border-slate-300 text-slate-900 placeholder-slate-500 focus:border-blue-500'
-                  } focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50`}
-                />
-              </div>
-
-              <button
-                type="submit"
-                className={`hoverable w-full px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
-                  isDark
-                    ? 'bg-blue-600 hover:bg-blue-700 text-white'
-                    : 'bg-blue-500 hover:bg-blue-600 text-white'
-                } shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center justify-center space-x-2`}
-              >
-                <Send className="w-5 h-5" />
-                <span>Send Message</span>
-              </button>
-            </form>
-          </div>
-        </div>
-      )}
-    </>
+      </div>
+    </footer>
   );
 };
 

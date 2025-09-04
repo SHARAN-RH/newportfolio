@@ -95,7 +95,7 @@ const CustomCursor: React.FC = () => {
     <>
       {/* Outer Circle (Halo) with spring delay */}
       <div
-        className="fixed pointer-events-none z-50 rounded-full transition-all duration-200 ease-out"
+        className="fixed pointer-events-none z-[9999] rounded-full transition-all duration-200 ease-out"
         style={{
           left: outerPosition.x - 20,
           top: outerPosition.y - 20,
@@ -113,7 +113,7 @@ const CustomCursor: React.FC = () => {
 
       {/* Inner Dot (Main cursor) - follows mouse instantly */}
       <div
-        className="fixed pointer-events-none z-50 rounded-full"
+        className="fixed pointer-events-none z-[9999] rounded-full"
         style={{
           left: innerPosition.x - 4,
           top: innerPosition.y - 4,
@@ -130,7 +130,7 @@ const CustomCursor: React.FC = () => {
       {isHovering && (
         <>
           <div
-            className="fixed pointer-events-none z-40 rounded-full animate-ping"
+            className="fixed pointer-events-none z-[9998] rounded-full animate-ping"
             style={{
               left: innerPosition.x - 30,
               top: innerPosition.y - 30,
@@ -141,7 +141,7 @@ const CustomCursor: React.FC = () => {
             }}
           />
           <div
-            className="fixed pointer-events-none z-40 rounded-full animate-pulse"
+            className="fixed pointer-events-none z-[9998] rounded-full animate-pulse"
             style={{
               left: innerPosition.x - 25,
               top: innerPosition.y - 25,

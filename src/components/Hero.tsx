@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Download, Mail, Phone, Github, Linkedin, Circle } from 'lucide-react';
+import { Mail, Phone, Github, Linkedin, Download, ChevronDown } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { useTheme } from '../contexts/ThemeContext';
 import { personalInfo } from '../data/portfolioData';
+import ParticleBackground from './ParticleBackground';
 
 const Hero: React.FC = () => {
   const [displayedName, setDisplayedName] = useState('');
@@ -13,7 +15,19 @@ const Hero: React.FC = () => {
   const [nameComplete, setNameComplete] = useState(false);
   const { isDark } = useTheme();
 
-  const name = personalInfo.name;
+  const scrollToNextSection = () => {
+    const aboutSection = document.getElementById('about');
+    if (aboutSection) {
+      const headerHeight = 85; // Account for fixed header
+      const elementPosition = aboutSection.offsetTop - headerHeight;
+      window.scrollTo({
+        top: elementPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  const name = `${personalInfo.name}\nDevOps Engineer`;
   const subtitle = personalInfo.description;
 
   // Blinking cursor for name
@@ -78,160 +92,189 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section id="home" className={`min-h-screen flex items-center pt-20 relative overflow-hidden ${
-      isDark 
-        ? 'bg-gradient-to-br from-slate-900 via-blue-950 to-indigo-950' 
-        : 'bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50'
-    }`}>
-      {/* Grid Pattern Background */}
-      <div className="absolute inset-0 opacity-30">
-        <div className={`w-full h-full ${
-          isDark 
-            ? 'bg-gradient-to-br from-blue-500/10 via-indigo-500/10 to-purple-500/10' 
-            : 'bg-gradient-to-br from-blue-200/20 via-indigo-200/20 to-purple-200/20'
-        }`} 
-        style={{
-          backgroundImage: `
-            linear-gradient(${isDark ? 'rgba(0, 191, 255, 0.1)' : 'rgba(0, 128, 255, 0.1)'} 1px, transparent 1px),
-            linear-gradient(90deg, ${isDark ? 'rgba(0, 191, 255, 0.1)' : 'rgba(0, 128, 255, 0.1)'} 1px, transparent 1px)
-          `,
-          backgroundSize: '50px 50px'
-        }} />
-      </div>
-
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          {/* Left Side - Text Content */}
-          <div className="space-y-6 lg:space-y-8 order-2 lg:order-1">
-            {/* Name with Blinking Dot */}
+    <section id="hero" className="myservicecart-hero h-[90vh] w-full overflow-hidden">
+      {/* Particle Background */}
+      <ParticleBackground />
+      
+      {/* Text Content Container - Independent */}
+      <div className="absolute left-0 top-16 w-3/5 h-full flex items-center justify-end z-20">
+        <div className="container mx-auto px-4 h-full flex items-center justify-center">
+          <div className="space-y-6 lg:space-y-8 text-center lg:text-left w-full max-w-lg">
+            {/* Name with Blinking Cursor */}
             <div>
-              <h1 className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 ${
-                isDark ? 'text-white' : 'text-slate-900'
-              } break-words font-akronim`}>
-                <span className={`${showNameCursor ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}
-                  style={{ color: isDark ? '#00BFFF' : '#0080FF' }}>
-                  •
-                </span>
-                <span className="ml-2">{displayedName}</span>
+              <h1 className="font-semibold mb-4 break-words" style={{ color: '#6A1FB4', fontFamily: 'Inter, sans-serif', letterSpacing: '-1.96px', lineHeight: '57px', fontSize: '65px' }}>
+                {displayedName.split('\n').map((line, lineIndex) => (
+                  <span key={lineIndex}>
+                    {line.split(' ').map((word, wordIndex) => {
+                      if (word === 'Developer') {
+                        return <span key={wordIndex} className="gradient-word">Developer</span>;
+                      }
+                      return word + ' ';
+                    })}
+                    {lineIndex < displayedName.split('\n').length - 1 && <br />}
+                  </span>
+                ))}
+                {showNameCursor && <span className="animate-pulse">|</span>}
               </h1>
-              <div className={`text-lg sm:text-xl md:text-2xl ${
-                isDark ? 'text-blue-100' : 'text-blue-800'
-              } leading-relaxed font-mono`}>
+            </div>
+
+            {/* Subtitle with Blinking Cursor */}
+            <div>
+              <p className="leading-relaxed mt-6" style={{ color: '#6A1FB4', fontFamily: 'Inter, sans-serif', fontSize: '16px', lineHeight: '22px' }}>
                 {displayedSubtitle}
-                <span className={`ml-1 ${showSubtitleCursor ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}
-                  style={{ color: isDark ? '#00BFFF' : '#0080FF' }}>
-                  _
-                </span>
-              </div>
+                {showSubtitleCursor && <span className="animate-pulse">|</span>}
+              </p>
             </div>
 
-            {/* Online Status */}
-            <div className="flex items-center space-x-3">
-              <div className="flex items-center space-x-2">
-                <div className="relative">
-                  <Circle className="w-3 h-3 sm:w-4 sm:h-4 text-emerald-400 fill-current animate-pulse" />
-                  <Circle className="w-3 h-3 sm:w-4 sm:h-4 text-emerald-400 fill-current absolute top-0 left-0 animate-ping" />
-                </div>
-                <span className={`text-sm sm:text-lg font-medium ${
-                  isDark ? 'text-emerald-300' : 'text-emerald-600'
-                }`}>
-                  Available for Hire / Freelancing
-                </span>
-              </div>
-            </div>
-
-            {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              <a
+            {/* Download Resume Button */}
+            <div className="flex flex-col sm:flex-row gap-4 mt-8">
+              <a 
                 href={personalInfo.resumeUrl}
                 download
-                className={`hoverable inline-flex items-center justify-center space-x-2 px-6 sm:px-8 py-3 rounded-full font-medium transition-all duration-300 ${
-                  isDark
-                    ? 'bg-gradient-to-r from-blue-500 to-indigo-500 text-white hover:from-blue-400 hover:to-indigo-400'
-                    : 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700'
-                } shadow-lg hover:shadow-xl transform hover:scale-105`}
-                style={{
-                  boxShadow: isDark 
-                    ? '0 0 20px rgba(0, 191, 255, 0.3)' 
-                    : '0 0 20px rgba(0, 128, 255, 0.3)'
-                }}
+                className="flex items-center justify-center gap-3 bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-colors duration-300 shadow-lg"
               >
                 <Download className="w-5 h-5" />
-                <span>Download Resume</span>
+                <div className="text-left">
+                  <div className="text-sm font-semibold">Download Resume</div>
+                </div>
               </a>
+              
+              <button 
+                onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
+                className="flex items-center justify-center gap-3 bg-transparent border-2 border-black text-black px-6 py-3 rounded-lg hover:bg-black hover:text-white transition-colors duration-300 shadow-lg"
+              >
+                <div className="text-left">
+                  <div className="text-sm font-semibold">Explore My Work</div>
+                </div>
+              </button>
+            </div>
 
-              {/* Contact Icons */}
-              <div className="flex justify-center sm:justify-start space-x-4">
-                {[
-                  { icon: Mail, action: 'email' },
-                  { icon: Phone, action: 'phone' },
-                  { icon: Github, action: 'github' },
-                  { icon: Linkedin, action: 'linkedin' }
-                ].map(({ icon: Icon, action }, index) => (
-                  <button
-                    key={action}
-                    onClick={() => handleContactClick(action)}
-                    className={`hoverable p-3 rounded-full transition-all duration-300 ${
-                      isDark
-                        ? 'bg-slate-800/50 text-blue-300 hover:bg-blue-500 hover:text-white backdrop-blur-sm'
-                        : 'bg-white/50 text-blue-700 hover:bg-blue-500 hover:text-white backdrop-blur-sm'
-                    } shadow-lg hover:shadow-xl transform hover:scale-110`}
-                    style={{
-                      boxShadow: isDark 
-                        ? '0 0 15px rgba(0, 191, 255, 0.2)' 
-                        : '0 0 15px rgba(0, 128, 255, 0.2)'
-                    }}
-                  >
-                    <Icon className="w-5 h-5" />
-                  </button>
-                ))}
-              </div>
+            {/* Contact Icons */}
+            <div className="flex justify-center lg:justify-start space-x-4 mt-8">
+              {[
+                { icon: Mail, type: 'email', color: 'text-blue-600' },
+                { icon: Phone, type: 'phone', color: 'text-green-600' },
+                { icon: Github, type: 'github', color: 'text-gray-800' },
+                { icon: Linkedin, type: 'linkedin', color: 'text-blue-700' },
+              ].map(({ icon: Icon, type, color }) => (
+                <button
+                  key={type}
+                  onClick={() => handleContactClick(type)}
+                  className={`p-3 rounded-full ${color} hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-xl`}
+                  style={{
+                    boxShadow: isDark 
+                      ? '0 0 15px rgba(0, 191, 255, 0.2)' 
+                      : '0 0 15px rgba(0, 128, 255, 0.2)'
+                  }}
+                >
+                  <Icon className="w-5 h-5" />
+                </button>
+              ))}
             </div>
           </div>
+        </div>
+      </div>
 
-          {/* Right Side - 3D Avatar */}
-          <div className="flex justify-center order-1 lg:order-2">
+      {/* Images Container - Independent */}
+      <div className="absolute right-0 top-16 w-3/5 h-full flex items-center justify-start z-20">
+        <div className="relative w-full h-full flex items-center justify-center">
+          {/* Main Profile Image with Ripple Effects */}
+          <div className="relative z-20">
             <div className="relative">
-              {/* Avatar Container with enhanced glow */}
-              <div className={`w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full p-1 shadow-2xl ${
-                isDark
-                  ? 'bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-500'
-                  : 'bg-gradient-to-br from-blue-400 via-indigo-400 to-purple-400'
-              }`}
-              style={{
-                boxShadow: isDark 
-                  ? '0 0 60px rgba(0, 191, 255, 0.4), 0 0 100px rgba(99, 102, 241, 0.2)' 
-                  : '0 0 60px rgba(0, 128, 255, 0.4), 0 0 100px rgba(79, 70, 229, 0.2)'
-              }}>
-                <div className={`w-full h-full rounded-full ${
-                  isDark ? 'bg-slate-900' : 'bg-white'
-                } flex items-center justify-center overflow-hidden`}>
-                  {/* Enhanced 3D Avatar */}
-                  <div className="relative w-full h-full flex items-center justify-center animate-float">
-                    <div className="text-6xl sm:text-8xl md:text-9xl filter drop-shadow-lg">
-                      👨‍💻
-                    </div>
+              <div className="w-60 h-60 md:w-72 md:h-72 rounded-full overflow-hidden shadow-2xl hover:scale-105 transition-transform duration-300 animate-float">
+                <div className={`w-full h-full rounded-full flex items-center justify-center text-6xl font-bold ${
+                  isDark ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'
+                } border-4 border-purple-500`}>
+                  {personalInfo.name.split(' ').map(n => n[0]).join('')}
+                </div>
+              </div>
+
+              {/* Ripple Effects */}
+              <div className="absolute inset-0 rounded-full border-2 border-blue-400 opacity-30 animate-ping" style={{ animationDuration: '3s' }}></div>
+              <div className="absolute inset-0 rounded-full border-2 border-purple-400 opacity-20 animate-ping" style={{ animationDuration: '4s', animationDelay: '1s' }}></div>
+              <div className="absolute inset-0 rounded-full border-2 border-pink-400 opacity-25 animate-ping" style={{ animationDuration: '5s', animationDelay: '2s' }}></div>
+
+              {/* Secondary Profile Images - Overlapping */}
+              <div className="absolute top-2 right-2 z-30">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden shadow-lg hover:scale-110 transition-transform duration-300 animate-float border-2 border-white" style={{ animationDelay: '1s' }}>
+                  <div className="w-full h-full rounded-full flex items-center justify-center text-xs font-bold bg-gradient-to-r from-blue-500 to-purple-500 text-white">
+                    JS
                   </div>
                 </div>
               </div>
               
-              {/* Enhanced floating rings */}
-              <div className="absolute inset-0 rounded-full animate-pulse">
-                <div className={`w-full h-full rounded-full border-2 opacity-30 animate-ping ${
-                  isDark ? 'border-blue-400' : 'border-blue-500'
-                }`}></div>
+              <div className="absolute bottom-2 left-2 z-30">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden shadow-lg hover:scale-110 transition-transform duration-300 animate-float border-2 border-white" style={{ animationDelay: '1.5s' }}>
+                  <div className="w-full h-full rounded-full flex items-center justify-center text-xs font-bold bg-gradient-to-r from-green-500 to-teal-500 text-white">
+                    TS
+                  </div>
+                </div>
               </div>
-              <div className="absolute inset-0 rounded-full animate-pulse" style={{ animationDelay: '1s' }}>
-                <div className={`w-full h-full rounded-full border-2 opacity-20 animate-ping ${
-                  isDark ? 'border-indigo-400' : 'border-indigo-500'
-                }`}></div>
+              
+              <div className="absolute top-12 left-1 z-30">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden shadow-lg hover:scale-110 transition-transform duration-300 animate-float border-2 border-white" style={{ animationDelay: '2.5s' }}>
+                  <div className="w-full h-full rounded-full flex items-center justify-center text-xs font-bold bg-gradient-to-r from-pink-500 to-red-500 text-white">
+                    RT
+                  </div>
+                </div>
+              </div>
+
+              <div className="absolute bottom-12 right-1 z-30">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden shadow-lg hover:scale-110 transition-transform duration-300 animate-float border-2 border-white" style={{ animationDelay: '3s' }}>
+                  <div className="w-full h-full rounded-full flex items-center justify-center text-xs font-bold bg-gradient-to-r from-orange-500 to-yellow-500 text-white">
+                    PY
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <style jsx>{`
+      {/* Animated Scroll Down Button */}
+      <motion.div 
+        className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-40"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 3, duration: 1 }}
+      >
+        <motion.button
+          onClick={scrollToNextSection}
+          className="group flex flex-col items-center space-y-2 text-black hover:text-black transition-colors duration-300 focus:outline-none focus:ring-0 focus:bg-transparent active:bg-transparent"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+        >
+          
+          {/* Animated line */}
+          <motion.div
+            className="w-px h-12 bg-gradient-to-b from-black to-transparent"
+            initial={{ scaleY: 0 }}
+            animate={{ scaleY: 1 }}
+            transition={{ delay: 3.5, duration: 0.8 }}
+          />
+          
+          {/* Arrow icon below line */}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 4, duration: 0.5 }}
+            className="mt-2"
+          >
+            <motion.div
+              animate={{ y: [0, 4, 0] }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              <ChevronDown className="w-4 h-4 text-black" />
+            </motion.div>
+          </motion.div>
+        </motion.button>
+      </motion.div>
+
+      <style>{`
         @keyframes float {
           0%, 100% { transform: translateY(0px) rotate(0deg); }
           50% { transform: translateY(-20px) rotate(2deg); }
@@ -239,6 +282,13 @@ const Hero: React.FC = () => {
         
         .animate-float {
           animation: float 4s ease-in-out infinite;
+        }
+        
+        .gradient-word {
+          background: linear-gradient(45deg, #6A1FB4, #9333EA, #C084FC);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
         }
       `}</style>
     </section>

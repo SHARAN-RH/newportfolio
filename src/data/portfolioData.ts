@@ -37,32 +37,88 @@ export const skills = [
 
 export const projects = [
   {
-    title: "Kubernetes Cluster Automation",
-    description: "Automated Kubernetes cluster deployment with Terraform and Ansible for multi-environment setups.",
-    technologies: ["Kubernetes", "Terraform", "Ansible", "AWS"],
-    githubUrl: "https://github.com/adameve/k8s-automation",
-    demoUrl: "https://demo.k8s-automation.com"
+    title: "Deploy a Dockerized Flask App on Kubernetes Using Ansible",
+    description: "Complete deployment pipeline for Flask applications using Docker containerization, Kubernetes orchestration, and Ansible automation.",
+    technologies: ["Flask", "Docker", "Kubernetes", "Ansible"],
+    githubUrl: "https://github.com/SHARAN-RH/Final/tree/main/Project_03",
+    duration: "2 weeks",
+    status: "Completed",
+    highlights: [
+      "Dockerized Flask application",
+      "Kubernetes deployment automation",
+      "Ansible playbook orchestration",
+      "Scalable microservices architecture"
+    ],
   },
   {
-    title: "CI/CD Pipeline with Jenkins",
-    description: "Complete CI/CD pipeline implementation with automated testing, security scanning, and deployment.",
-    technologies: ["Jenkins", "Docker", "GitHub", "AWS"],
-    githubUrl: "https://github.com/adameve/cicd-pipeline",
-    demoUrl: "https://demo.cicd-pipeline.com"
+    title: "Complete CI/CD Pipeline with Jenkins, Docker, and a Local Registry — from Scratch",
+    description: "End-to-end CI/CD pipeline implementation with Jenkins automation, Docker containerization, and local registry management.",
+    technologies: ["Jenkins", "Docker", "Local Registry", "CI/CD"],
+    githubUrl: "https://github.com/SHARAN-RH/Final/tree/main/Project_04",
+    duration: "3 weeks",
+    status: "Completed",
+    highlights: [
+      "Jenkins pipeline automation",
+      "Local Docker registry setup",
+      "Automated testing integration",
+      "Zero-downtime deployments"
+    ],
   },
   {
-    title: "Monitoring Stack Deployment",
-    description: "Comprehensive monitoring solution using Prometheus, Grafana, and ELK stack for infrastructure observability.",
-    technologies: ["Prometheus", "Grafana", "ELK", "Docker"],
-    githubUrl: "https://github.com/adameve/monitoring-stack",
-    demoUrl: "https://demo.monitoring-stack.com"
+    title: "Full CI/CD Pipeline with Jenkins, Docker & Ansible (No DockerHub!)",
+    description: "Comprehensive CI/CD solution using Jenkins, Docker, and Ansible without external registry dependencies.",
+    technologies: ["Jenkins", "Docker", "Ansible", "CI/CD"],
+    githubUrl: "https://github.com/SHARAN-RH/Phase02_Projects/tree/main/Project_05/my-app",
+    duration: "4 weeks",
+    status: "Completed",
+    highlights: [
+      "Self-hosted container registry",
+      "Ansible deployment automation",
+      "Multi-stage pipeline",
+      "Infrastructure as Code"
+    ],
   },
   {
-    title: "Infrastructure as Code",
-    description: "Multi-cloud infrastructure provisioning using Terraform with automated state management.",
-    technologies: ["Terraform", "AWS", "Azure", "Python"],
-    githubUrl: "https://github.com/adameve/iac-terraform",
-    demoUrl: "https://demo.iac-terraform.com"
+    title: "Jenkins CI/CD Cluster with Custom Docker & Kubernetes — No Prebuilt Images",
+    description: "Custom Jenkins cluster implementation with Docker and Kubernetes using only custom-built images and configurations.",
+    technologies: ["Jenkins", "Docker", "Kubernetes", "Custom Images"],
+    githubUrl: "https://github.com/SHARAN-RH/Final/tree/main/Project_02",
+    duration: "5 weeks",
+    status: "Completed",
+    highlights: [
+      "Custom Docker image creation",
+      "Jenkins cluster on Kubernetes",
+      "No external dependencies",
+      "High availability setup"
+    ],
+  },
+  {
+    title: "Ansible Cluster with Docker and Kubernetes",
+    description: "Automated cluster management using Ansible for Docker and Kubernetes infrastructure provisioning and configuration.",
+    technologies: ["Ansible", "Docker", "Kubernetes", "Automation"],
+    githubUrl: "https://github.com/SHARAN-RH/Final/tree/main/Project_01",
+    duration: "3 weeks",
+    status: "Completed",
+    highlights: [
+      "Ansible cluster automation",
+      "Docker swarm integration",
+      "Kubernetes cluster setup",
+      "Configuration management"
+    ],
+  },
+  {
+    title: "Deploying Jenkins + Ansible on a Manually Created Kubernetes Cluster (with kubeadm)",
+    description: "Manual Kubernetes cluster creation using kubeadm with Jenkins and Ansible deployment for complete DevOps automation.",
+    technologies: ["Kubernetes", "kubeadm", "Jenkins", "Ansible"],
+    githubUrl: "https://github.com/SHARAN-RH/Phase02_Projects/tree/main/Project_06",
+    duration: "4 weeks",
+    status: "Completed",
+    highlights: [
+      "Manual Kubernetes setup with kubeadm",
+      "Jenkins master-slave configuration",
+      "Ansible integration",
+      "Complete DevOps toolchain"
+    ],
   }
 ];
 
@@ -99,6 +155,18 @@ export const projects = [
 
 export const experience = [
   {
+    title: "Junior Developer Intern",
+    company: "ONIR Technologies",
+    location: "Canada (Remote)",
+    period: "Jan 2025 - Present",
+    achievements: [
+      "Assisted in migrating legacy applications to containerized architecture using Docker",
+      "Participated in infrastructure automation projects with Ansible and Terraform",
+      "Gained hands-on experience with Kubernetes cluster management and deployment",
+      "Contributed to monitoring and alerting setup using Prometheus and Grafana"
+    ]
+  },
+  {
     title: "Junior IoT Developer Intern",
     company: "SpaceZee Technologies",
     location: "Chennai, TN",
@@ -108,18 +176,6 @@ export const experience = [
       "Implemented Docker containerization for IoT applications, reducing deployment time by 60%",
       "Created automated monitoring dashboards with Grafana, improving system visibility by 40%",
       "Collaborated with DevOps team to establish CI/CD practices for IoT deployments"
-    ]
-  },
-  {
-    title: "Junior Developer Intern",
-    company: "Osvan Technologies",
-    location: "Canada (Remote)",
-    period: "Jan 2024 - Present",
-    achievements: [
-      "Assisted in migrating legacy applications to containerized architecture using Docker",
-      "Participated in infrastructure automation projects with Ansible and Terraform",
-      "Gained hands-on experience with Kubernetes cluster management and deployment",
-      "Contributed to monitoring and alerting setup using Prometheus and Grafana"
     ]
   }
 ];
@@ -149,5 +205,29 @@ export const blogs = [
     snippet: "A comprehensive guide to deploying and managing Kubernetes clusters in production environments with security and scalability in mind.",
     platform: "Medium",
     url: "https://medium.com/@adameve/kubernetes-best-practices"
+  }
+];
+
+export const certifications = [
+  {
+    name: "AWS Solutions Architect Associate",
+    issuer: "Amazon Web Services",
+    date: "2023",
+    credentialId: "AWS-SAA-2023-001",
+    verifyUrl: "https://aws.amazon.com/verification"
+  },
+  {
+    name: "Docker Certified Associate",
+    issuer: "Docker Inc.",
+    date: "2022",
+    credentialId: "DCA-2022-001",
+    verifyUrl: "https://docker.com/verification"
+  },
+  {
+    name: "Certified Kubernetes Administrator (CKA)",
+    issuer: "Cloud Native Computing Foundation",
+    date: "2023",
+    credentialId: "CKA-2023-001",
+    verifyUrl: "https://cncf.io/verification"
   }
 ];

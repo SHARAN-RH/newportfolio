@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucide Icons Showcase</title>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .style-selector {
+            padding: 20px;
+            background: #f1f5f9;
+            border-bottom: 1px solid #e2e8f0;
+            text-align: center;
+        }
+        
+        .style-selector h3 {
+            margin-bottom: 15px;
+            color: #374151;
+            font-size: 1.2rem;
+        }
+        
+        .style-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .style-btn {
+            padding: 10px 20px;
+            border: 2px solid #e5e7eb;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            color: #374151;
+        }
+        
+        .style-btn:hover {
+            border-color: #6366f1;
+            background: #f8fafc;
+        }
+        
+        .style-btn.active {
+            border-color: #6366f1;
+            background: #6366f1;
+            color: white;
+        }
+        
+        .search-container {
+            padding: 20px;
+            background: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .search-box {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .search-box:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+        
+        .selected-icons {
+            padding: 20px;
+            background: #f1f5f9;
+            border-bottom: 1px solid #e2e8f0;
+            display: none;
+        }
+        
+        .selected-icons.show {
+            display: block;
+        }
+        
+        .selected-count {
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 15px;
+        }
+        
+        .selected-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .selected-tag {
+            background: #6366f1;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .copy-btn {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .copy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+        }
+        
+        .category {
+            padding: 30px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        
+        .category:last-child {
+            border-bottom: none;
+        }
+        
+        .category-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        
+        .icons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+        }
+        
+        .icon-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 10px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .icon-item:hover {
+            border-color: #6366f1;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.15);
+        }
+        
+        .icon-item.selected {
+            border-color: #6366f1;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+        }
+        
+        .icon-item svg {
+            width: 32px;
+            height: 32px;
+            margin-bottom: 8px;
+            stroke: currentColor;
+        }
+        
+        .icon-name {
+            font-size: 12px;
+            font-weight: 500;
+            text-align: center;
+            word-break: break-word;
+        }
+        
+        .instructions {
+            padding: 30px;
+            background: #f8fafc;
+            text-align: center;
+            color: #64748b;
+        }
+        
+        .instructions h3 {
+            color: #374151;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .instructions ol {
+            text-align: left;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .instructions li {
+            margin-bottom: 8px;
+            padding-left: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .icons-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+                gap: 10px;
+            }
+            
+            .icon-item {
+                padding: 15px 8px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎨 Lucide Icons Showcase</h1>
+            <p>Click on icons to select them for your skills section</p>
+        </div>
+        
+        <div class="style-selector">
+            <h3>🎭 Choose Icon Style</h3>
+            <div class="style-buttons">
+                <button class="style-btn active" data-style="outline" onclick="changeStyle('outline')">Outline</button>
+                <button class="style-btn" data-style="filled" onclick="changeStyle('filled')">Filled</button>
+                <button class="style-btn" data-style="thin" onclick="changeStyle('thin')">Thin</button>
+                <button class="style-btn" data-style="bold" onclick="changeStyle('bold')">Bold</button>
+                <button class="style-btn" data-style="duotone" onclick="changeStyle('duotone')">Duotone</button>
+            </div>
+        </div>
+        
+        <div class="search-container">
+            <input type="text" class="search-box" placeholder="🔍 Search icons..." id="searchInput">
+        </div>
+        
+        <div class="selected-icons" id="selectedSection">
+            <div class="selected-count" id="selectedCount">Selected Icons (0)</div>
+            <div class="selected-list" id="selectedList"></div>
+            <button class="copy-btn" onclick="copyImportStatement()">📋 Copy Import Statement</button>
+        </div>
+        
+        <div id="categoriesContainer">
+            <!-- Categories will be populated by JavaScript -->
+        </div>
+        
+        <div class="instructions">
+            <h3>📝 How to Use</h3>
+            <ol>
+                <li>Browse through the categorized icons below</li>
+                <li>Click on icons to select/deselect them (they'll turn purple)</li>
+                <li>Use the search bar to find specific icons</li>
+                <li>Click "Copy Import Statement" to get the React import code</li>
+                <li>Tell me which icons you've selected and I'll update your skills section</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        // Icon categories with their respective icons
+        const iconCategories = {
+            'Development & Programming': [
+                'code', 'code-2', 'terminal', 'file-code', 'braces', 'binary'
+            ],
+            'Frontend & UI': [
+                'monitor', 'smartphone', 'tablet', 'layout', 'palette', 'eye', 'paintbrush'
+            ],
+            'Backend & Server': [
+                'server', 'database', 'hard-drive', 'cpu', 'activity', 'zap'
+            ],
+            'Cloud & DevOps': [
+                'cloud', 'upload', 'download', 'git-branch', 'git-commit', 'workflow', 'settings', 'cog'
+            ],
+            'Network & API': [
+                'globe', 'network', 'wifi', 'link', 'share', 'layers'
+            ],
+            'Tools & Frameworks': [
+                'wrench', 'hammer', 'package', 'box', 'puzzle', 'component'
+            ],
+            'Security & Quality': [
+                'shield', 'lock', 'key', 'check-circle', 'bug', 'search'
+            ],
+            'Popular Icons': [
+                'rocket', 'star', 'heart', 'thumbs-up', 'award', 'target', 'lightbulb', 'coffee'
+            ],
+            'Media & Files': [
+                'play', 'pause', 'folder', 'file', 'image', 'video'
+            ],
+            'Communication': [
+                'mail', 'phone', 'map-pin', 'calendar', 'clock', 'user', 'users', 'home'
+            ]
+        };
+
+        let selectedIcons = new Set();
+
+        // Convert kebab-case to PascalCase for React component names
+        function toPascalCase(str) {
+            return str.split('-').map(word => 
+                word.charAt(0).toUpperCase() + word.slice(1)
+            ).join('');
+        }
+
+        let currentStyle = 'outline';
+
+        // Create icon element with different styles
+        function createIconElement(iconName, categoryName) {
+            const iconItem = document.createElement('div');
+            iconItem.className = 'icon-item';
+            iconItem.dataset.iconName = iconName;
+            iconItem.dataset.category = categoryName;
+            
+            const pascalName = toPascalCase(iconName);
+            
+            iconItem.innerHTML = `
+                <i data-lucide="${iconName}" class="icon-svg"></i>
+                <div class="icon-name">${pascalName}</div>
+            `;
+            
+            iconItem.addEventListener('click', () => toggleIcon(iconName, iconItem));
+            
+            return iconItem;
+        }
+
+        // Change icon style
+        function changeStyle(style) {
+            currentStyle = style;
+            
+            // Update active button
+            document.querySelectorAll('.style-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`[data-style="${style}"]`).classList.add('active');
+            
+            // Update all icons
+            const allIcons = document.querySelectorAll('.icon-svg');
+            allIcons.forEach(icon => {
+                applyIconStyle(icon, style);
+            });
+        }
+
+        // Apply different styles to icons
+        function applyIconStyle(iconElement, style) {
+            // Reset all styles
+            iconElement.style.strokeWidth = '';
+            iconElement.style.fill = '';
+            iconElement.style.stroke = '';
+            iconElement.style.opacity = '';
+            
+            switch(style) {
+                case 'outline':
+                    iconElement.style.strokeWidth = '2px';
+                    iconElement.style.fill = 'none';
+                    iconElement.style.stroke = 'currentColor';
+                    break;
+                    
+                case 'filled':
+                    iconElement.style.strokeWidth = '0px';
+                    iconElement.style.fill = 'currentColor';
+                    iconElement.style.stroke = 'none';
+                    break;
+                    
+                case 'thin':
+                    iconElement.style.strokeWidth = '1px';
+                    iconElement.style.fill = 'none';
+                    iconElement.style.stroke = 'currentColor';
+                    break;
+                    
+                case 'bold':
+                    iconElement.style.strokeWidth = '3px';
+                    iconElement.style.fill = 'none';
+                    iconElement.style.stroke = 'currentColor';
+                    break;
+                    
+                case 'duotone':
+                    iconElement.style.strokeWidth = '2px';
+                    iconElement.style.fill = 'currentColor';
+                    iconElement.style.stroke = 'currentColor';
+                    iconElement.style.opacity = '0.7';
+                    break;
+            }
+        }
+
+        // Toggle icon selection
+        function toggleIcon(iconName, element) {
+            const pascalName = toPascalCase(iconName);
+            
+            if (selectedIcons.has(pascalName)) {
+                selectedIcons.delete(pascalName);
+                element.classList.remove('selected');
+            } else {
+                selectedIcons.add(pascalName);
+                element.classList.add('selected');
+            }
+            
+            updateSelectedDisplay();
+        }
+
+        // Update selected icons display
+        function updateSelectedDisplay() {
+            const selectedSection = document.getElementById('selectedSection');
+            const selectedCount = document.getElementById('selectedCount');
+            const selectedList = document.getElementById('selectedList');
+            
+            if (selectedIcons.size > 0) {
+                selectedSection.classList.add('show');
+                selectedCount.textContent = `Selected Icons (${selectedIcons.size})`;
+                
+                selectedList.innerHTML = '';
+                selectedIcons.forEach(iconName => {
+                    const tag = document.createElement('div');
+                    tag.className = 'selected-tag';
+                    tag.textContent = iconName;
+                    selectedList.appendChild(tag);
+                });
+            } else {
+                selectedSection.classList.remove('show');
+            }
+        }
+
+        // Copy import statement to clipboard
+        function copyImportStatement() {
+            if (selectedIcons.size === 0) {
+                alert('Please select some icons first!');
+                return;
+            }
+            
+            const importStatement = `import { ${Array.from(selectedIcons).join(', ')} } from 'lucide-react';`;
+            
+            navigator.clipboard.writeText(importStatement).then(() => {
+                alert('Import statement copied to clipboard!');
+            }).catch(() => {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = importStatement;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                alert('Import statement copied to clipboard!');
+            });
+        }
+
+        // Search functionality
+        function setupSearch() {
+            const searchInput = document.getElementById('searchInput');
+            
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                const iconItems = document.querySelectorAll('.icon-item');
+                const categories = document.querySelectorAll('.category');
+                
+                iconItems.forEach(item => {
+                    const iconName = item.dataset.iconName.toLowerCase();
+                    const pascalName = toPascalCase(item.dataset.iconName).toLowerCase();
+                    
+                    if (iconName.includes(searchTerm) || pascalName.includes(searchTerm)) {
+                        item.style.display = 'flex';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+                
+                // Hide empty categories
+                categories.forEach(category => {
+                    const visibleIcons = category.querySelectorAll('.icon-item[style="display: flex"], .icon-item:not([style])');
+                    if (visibleIcons.length === 0 && searchTerm) {
+                        category.style.display = 'none';
+                    } else {
+                        category.style.display = 'block';
+                    }
+                });
+            });
+        }
+
+        // Initialize the page
+        function init() {
+            const container = document.getElementById('categoriesContainer');
+            
+            Object.entries(iconCategories).forEach(([categoryName, icons]) => {
+                const categoryDiv = document.createElement('div');
+                categoryDiv.className = 'category';
+                
+                const titleDiv = document.createElement('div');
+                titleDiv.className = 'category-title';
+                titleDiv.textContent = categoryName;
+                
+                const iconsGrid = document.createElement('div');
+                iconsGrid.className = 'icons-grid';
+                
+                icons.forEach(iconName => {
+                    const iconElement = createIconElement(iconName, categoryName);
+                    iconsGrid.appendChild(iconElement);
+                });
+                
+                categoryDiv.appendChild(titleDiv);
+                categoryDiv.appendChild(iconsGrid);
+                container.appendChild(categoryDiv);
+            });
+            
+            // Initialize Lucide icons
+            lucide.createIcons();
+            
+            // Apply initial style to all icons
+            setTimeout(() => {
+                const allIcons = document.querySelectorAll('.icon-svg');
+                allIcons.forEach(icon => {
+                    applyIconStyle(icon, currentStyle);
+                });
+            }, 100);
+            
+            // Setup search
+            setupSearch();
+        }
+
+        // Start when page loads
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>

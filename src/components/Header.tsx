@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Code } from 'lucide-react';
-import { useTheme } from '../contexts/ThemeContext';
-import ThemeToggle from './ThemeToggle';
+import { Menu, X } from 'lucide-react';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const { isDark } = useTheme();
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      const scrollTop = window.scrollY;
+      setIsScrolled(scrollTop > 100);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -20,7 +18,7 @@ const Header: React.FC = () => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const headerHeight = 80; // Account for fixed header
+      const headerHeight = isScrolled ? 80 : 150; // Account for dynamic header height
       const elementPosition = element.offsetTop - headerHeight;
       window.scrollTo({
         top: elementPosition,
@@ -30,87 +28,97 @@ const Header: React.FC = () => {
     setIsMenuOpen(false);
   };
 
-  const navItems = [
-    { id: 'home', label: 'Home' },
+  const leftNavItems = [
+    { id: 'hero', label: 'Home' },
     { id: 'about', label: 'About' },
     { id: 'skills', label: 'Skills' },
-    { id: 'projects', label: 'Projects' },
     { id: 'experience', label: 'Experience' },
+  ];
+
+  const rightNavItems = [
+    { id: 'projects', label: 'Projects' },
+    { id: 'certificates', label: 'Certificates' },
+    { id: 'blog', label: 'Blog' },
     { id: 'contact', label: 'Contact' },
   ];
 
-  return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        scrolled
-          ? isDark
-            ? 'bg-slate-900/90 backdrop-blur-md shadow-lg'
-            : 'bg-white/90 backdrop-blur-md shadow-lg'
-          : 'bg-transparent'
-      }`}
-    >
-      <div className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <div className="flex items-center space-x-2">
-            <Code className={`w-8 h-8 ${isDark ? 'text-indigo-400' : 'text-indigo-600'}`} />
-            <span className={`text-xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>
-              Sharan H
-            </span>
-          </div>
+  const allNavItems = [...leftNavItems, ...rightNavItems];
 
-          {/* Desktop Navigation */}
+  return (
+    <header className={`fixed left-0 right-0 z-50 transition-all duration-300 ease-out ${
+      isScrolled 
+        ? 'top-0 h-[80px] bg-white dark:bg-gray-900 backdrop-blur-md shadow-md border-b border-gray-200/50 dark:border-gray-700/50' 
+        : 'top-12 h-[120px] flex items-center justify-center'
+    }`}>
+      <div className={`transition-all duration-300 ease-out ${
+        isScrolled 
+          ? 'w-full h-full flex items-center justify-center px-6' 
+          : 'backdrop-blur-md rounded-full shadow-lg border bg-white/90 dark:bg-gray-800/90 border-gray-200/20 dark:border-gray-700/20 px-8 py-4'
+      }`}>
+        <div className={`flex items-center justify-between transition-all duration-300 ease-out ${
+          isScrolled ? 'w-full max-w-6xl' : 'max-w-4xl'
+        }`}>
+          {/* Left Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
+            {leftNavItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`hoverable transition-all duration-300 font-medium ${
-                  isDark
-                    ? 'text-slate-300 hover:text-indigo-400'
-                    : 'text-slate-700 hover:text-indigo-600'
-                }`}
+                className="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 text-sm font-medium transition-colors duration-200"
               >
                 {item.label}
               </button>
             ))}
-            <ThemeToggle />
+          </nav>
+
+          {/* Center Logo */}
+          <div className="flex items-center mx-8">
+            <a href="#" className="flex items-center" onClick={() => scrollToSection('hero')}>
+              <span className="text-2xl font-bold text-purple-600 dark:text-purple-400 tracking-tight">
+                &lt;SHARAN H&gt;
+              </span>
+            </a>
+          </div>
+
+          {/* Right Navigation */}
+          <nav className="hidden md:flex items-center space-x-8">
+            {rightNavItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 text-sm font-medium transition-colors duration-200"
+              >
+                {item.label}
+              </button>
+            ))}
           </nav>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center space-x-4">
-            <ThemeToggle />
+          <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`hoverable p-2 rounded-md ${
-                isDark ? 'text-white' : 'text-slate-900'
-              }`}
+              className="text-gray-700 dark:text-gray-300 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+              aria-label="Toggle menu"
             >
-              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div
-            className={`mt-4 md:hidden rounded-lg p-4 ${
-              isDark ? 'bg-slate-800/95' : 'bg-white/95'
-            } backdrop-blur-md shadow-lg`}
-          >
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className={`hoverable block w-full text-left py-3 px-4 transition-all duration-300 font-medium rounded-lg ${
-                  isDark
-                    ? 'text-slate-300 hover:text-indigo-400 hover:bg-slate-700'
-                    : 'text-slate-700 hover:text-indigo-600 hover:bg-slate-100'
-                }`}
-              >
-                {item.label}
-              </button>
-            ))}
+          <div className="mt-4 md:hidden">
+            <div className="flex flex-col space-y-2 pt-4 border-t border-gray-200 dark:border-gray-700">
+              {allNavItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className="text-left px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors duration-200"
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
           </div>
         )}
       </div>

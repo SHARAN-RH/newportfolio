@@ -1,6 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-gray-200;
+  }
+  
+  body {
+    @apply bg-white text-gray-900;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    @apply bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent;
+  }
+  
+  .glass-effect {
+    @apply backdrop-blur-md bg-white/10 border border-white/20;
+  }
+  
+  .glow-effect {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+  }
+  
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+}
 
 * {
   margin: 0;
@@ -20,29 +55,116 @@ body {
   overflow-x: hidden;
 }
 
-/* Enhanced Custom scrollbar with deep sky blue theme */
+/* Hide default scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  display: none;
 }
 
-::-webkit-scrollbar-track {
-  background: #0F172A;
+/* Hide scrollbar for Firefox */
+html {
+  scrollbar-width: none;
 }
 
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(45deg, #00BFFF, #6366F1);
-  border-radius: 4px;
-  box-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(45deg, #00A8E6, #8B5CF6);
-  box-shadow: 0 0 15px rgba(0, 191, 255, 0.7);
+/* Hide scrollbar for IE and Edge */
+body {
+  -ms-overflow-style: none;
 }
 
 /* Smooth transitions for all elements */
 * {
   transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* ScrollIndicator Custom Styles */
+.lqd-stickybar-wrap {
+  position: fixed;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 50;
+}
+
+.lqd-scrl-indc {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lqd-scrl-indc-inner {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.lqd-scrl-indc-txt {
+  color: #000000;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  transform: rotate(-90deg);
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+.scroll-progress-container {
+  position: relative;
+  height: 4rem;
+  width: 1px;
+  background-color: #000000;
+  margin-bottom: 1rem;
+}
+
+.scroll-progress-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #000000;
+  transition: height 0.3s ease-out;
+}
+
+.scroll-progress-dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: #000000;
+  border-radius: 50%;
+  left: 50%;
+  transition: top 0.3s ease-out;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+/* MyServiceCart Exact Hero Background */
+.myservicecart-hero {
+  background: linear-gradient(135deg, #f8f9fd 0%, #f0f2f7 20%, #e9eaf4 40%, #e2e3ef 60%, #d9dae9 80%, #d1d2e4 100%);
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.myservicecart-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(96, 76, 253, 0.05) 0%, transparent 30%),
+    radial-gradient(circle at 90% 80%, rgba(253, 164, 76, 0.05) 0%, transparent 30%),
+    radial-gradient(circle at 50% 50%, rgba(15, 187, 180, 0.04) 0%, transparent 50%),
+    linear-gradient(45deg, 
+      rgba(248, 89, 118, 0.05) 0%, 
+      transparent 25%, 
+      transparent 75%, 
+      rgba(96, 76, 253, 0.05) 100%
+    );
+  pointer-events: none;
+  z-index: 1;
 }
 
 /* Enhanced animations */
@@ -379,4 +501,19 @@ textarea:focus {
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(45deg, #00A8E6, #8B5CF6);
   box-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
+}
+
+/* Continuous scrolling animation */
+@keyframes scroll {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 20s linear infinite;
+  will-change: transform;
 }
