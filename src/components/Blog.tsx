@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, BookOpen, Clock, ArrowRight, Tag, ChevronLeft, ChevronRight } from 'lucide-react';
+import { blogs } from '../data/portfolioData';
 
 const Blog: React.FC = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -20,128 +21,19 @@ const Blog: React.FC = () => {
     }
   };
 
-  const blogPosts = [
-    {
-      id: 1,
-      title: "Autodeploying a Flask Microservice with Jenkins & Docker: A Step-by-Step Guide with Real Code",
-      excerpt: "Complete guide to automating Flask microservice deployment using Jenkins pipelines and Docker containerization with practical examples.",
-      date: "2024-08-15",
-      readTime: "8 min read",
-      category: "DevOps",
-      tags: ["Flask", "Jenkins", "Docker"],
-      image: "/api/placeholder/400/250",
-      url: "https://medium.com/@sharan-rh/autodeploying-a-flask-microservice-with-jenkins-docker-a-step-by-step-guide-with-real-code-0b484b3d4bcd",
-      featured: true
-    },
-    {
-      id: 2,
-      title: "From Monolith to Microservices: Building & Deploying Flask-Based Microservices with Docker",
-      excerpt: "Learn how to break down monolithic applications into microservices architecture using Flask and Docker containerization.",
-      date: "2024-08-10",
-      readTime: "10 min read",
-      category: "Architecture",
-      tags: ["Flask", "Microservices", "Docker"],
-      image: "/api/placeholder/400/250",
-      url: "https://medium.com/@sharan-rh/from-monolith-to-microservices-building-deploying-flask-based-microservices-with-docker-cda112b9e520",
-      featured: false
-    },
-    {
-      id: 3,
-      title: "From Zero to Full CI/CD Pipeline: Jenkins, Ansible, Docker & Kubernetes with Minikube",
-      excerpt: "Complete walkthrough of building a production-ready CI/CD pipeline using Jenkins, Ansible, Docker, and Kubernetes on Minikube.",
-      date: "2024-08-05",
-      readTime: "12 min read",
-      category: "DevOps",
-      tags: ["Jenkins", "Ansible", "Kubernetes"],
-      image: "/api/placeholder/400/250",
-      url: "https://medium.com/@sharan-rh/from-zero-to-full-ci-cd-pipeline-jenkins-ansible-docker-kubernetes-minikube-52c032fc3131",
-      featured: false
-    },
-    {
-      id: 4,
-      title: "Automating the Future: Build an Ansible Cluster with Docker and Kubernetes Step-by-Step",
-      excerpt: "Master infrastructure automation by building an Ansible cluster integrated with Docker and Kubernetes for scalable deployments.",
-      date: "2024-07-30",
-      readTime: "9 min read",
-      category: "Automation",
-      tags: ["Ansible", "Docker", "Kubernetes"],
-      image: "/api/placeholder/400/250",
-      url: "https://medium.com/@sharan-rh/automating-the-future-build-an-ansible-cluster-with-docker-and-kubernetes-step-by-step-for-44826e71c648",
-      featured: false
-    },
-    {
-      id: 5,
-      title: "Ansible-Driven Configuration Management Inside Kubernetes Pods: A Hands-On Guide for Beginners",
-      excerpt: "Learn how to use Ansible for configuration management within Kubernetes pods with practical examples and best practices.",
-      date: "2024-07-25",
-      readTime: "8 min read",
-      category: "Configuration",
-      tags: ["Ansible", "Kubernetes", "Configuration"],
-      image: "/api/placeholder/400/250",
-      url: "https://medium.com/@sharan-rh/ansible-driven-configuration-management-inside-kubernetes-pods-a-hands-on-guide-for-beginners-a29c0636c538",
-      featured: false
-    },
-    {
-      id: 6,
-      title: "Deploying Jenkins + Ansible on a Manually Created Kubernetes Cluster with kubeadm",
-      excerpt: "Step-by-step guide to setting up Jenkins and Ansible on a manually created Kubernetes cluster using kubeadm for complete DevOps automation.",
-      date: "2024-07-20",
-      readTime: "11 min read",
-      category: "DevOps",
-      tags: ["Jenkins", "Ansible", "kubeadm"],
-      image: "/api/placeholder/400/250",
-      url: "https://medium.com/@sharan-rh/deploying-jenkins-ansible-on-a-manually-created-kubernetes-cluster-with-kubeadm-067fb15ae607",
-      featured: false
-    },
-    {
-      id: 7,
-      title: "Building a Jenkins CI/CD Cluster with Custom Docker & Kubernetes — No Prebuilt Images",
-      excerpt: "Create a complete Jenkins CI/CD cluster using custom Docker images and Kubernetes without relying on prebuilt images.",
-      date: "2024-07-15",
-      readTime: "10 min read",
-      category: "CI/CD",
-      tags: ["Jenkins", "Docker", "Kubernetes"],
-      image: "/api/placeholder/400/250",
-      url: "https://medium.com/@sharan-rh/building-a-jenkins-ci-cd-cluster-with-custom-docker-kubernetes-no-prebuilt-images-no-c97549ba566a",
-      featured: false
-    },
-    {
-      id: 8,
-      title: "From Zero to Production: How I Built a Full CI/CD Pipeline with Jenkins, Docker & Ansible",
-      excerpt: "Complete journey of building a production-ready CI/CD pipeline from scratch using Jenkins, Docker, and Ansible with real-world examples.",
-      date: "2024-07-10",
-      readTime: "13 min read",
-      category: "DevOps",
-      tags: ["Jenkins", "Docker", "Ansible"],
-      image: "/api/placeholder/400/250",
-      url: "https://medium.com/@sharan-rh/from-zero-to-production-how-i-built-a-full-ci-cd-pipeline-with-jenkins-docker-ansible-no-e931c368bcee",
-      featured: false
-    },
-    {
-      id: 9,
-      title: "No DockerHub: Building a Complete CI/CD Pipeline with Local Registry",
-      excerpt: "Learn how to build a complete CI/CD pipeline without relying on DockerHub by setting up and using a local Docker registry.",
-      date: "2024-07-05",
-      readTime: "7 min read",
-      category: "DevOps",
-      tags: ["Docker", "Registry", "CI/CD"],
-      image: "/api/placeholder/400/250",
-      url: "https://medium.com/@sharan-rh/no-dockerhub-16edfb07483a",
-      featured: false
-    },
-    {
-      id: 10,
-      title: "Deploy a Dockerized Flask App on Kubernetes Using Ansible: A Real-World DevOps Walkthrough",
-      excerpt: "Comprehensive guide to deploying a Dockerized Flask application on Kubernetes using Ansible automation with practical DevOps workflows.",
-      date: "2024-06-30",
-      readTime: "9 min read",
-      category: "DevOps",
-      tags: ["Flask", "Kubernetes", "Ansible"],
-      image: "/api/placeholder/400/250",
-      url: "https://medium.com/@sharan-rh/deploy-a-dockerized-flask-app-on-kubernetes-using-ansible-a-real-world-devops-walkthrough-9fc2af9bc0d8",
-      featured: false
-    }
-  ];
+  // Transform blogs data to match component structure
+  const blogPosts = blogs.map((blog, index) => ({
+    id: index + 1,
+    title: blog.title,
+    excerpt: blog.snippet,
+    date: "2024-08-15", // Default date, could be enhanced with actual dates
+    readTime: "8 min read", // Default read time
+    category: blog.category,
+    tags: [blog.category, "DevOps", "Tutorial"], // Default tags based on category
+    image: "/api/placeholder/400/250",
+    url: blog.url,
+    featured: index === 0 // First blog is featured
+  }));
 
 
   const cardVariants = {
@@ -219,6 +111,17 @@ const Blog: React.FC = () => {
               >
                 Insights, tutorials, and thoughts on modern development practices
               </motion.p>
+              
+              <motion.div
+                className="mt-3"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.6 }}
+              >
+                <span className="text-sm font-bold text-purple-600 dark:text-purple-400 bg-purple-100 dark:bg-purple-900/30 px-3 py-1 rounded-full">
+                  {blogPosts.length} Articles
+                </span>
+              </motion.div>
             </div>
           </motion.div>
 
@@ -227,14 +130,14 @@ const Blog: React.FC = () => {
             {/* Navigation Arrows */}
             <button
               onClick={() => scroll('left')}
-              className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 p-3 rounded-full shadow-lg transition-all duration-300 bg-white/80 dark:bg-gray-800/80 text-gray-800 dark:text-white hover:bg-purple-600 hover:text-white backdrop-blur-sm"
+              className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 p-3 rounded-full shadow-lg transition-all duration-300 bg-white dark:bg-gray-800 text-gray-800 dark:text-white hover:bg-purple-600 hover:text-white"
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
             
             <button
               onClick={() => scroll('right')}
-              className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 p-3 rounded-full shadow-lg transition-all duration-300 bg-white/80 dark:bg-gray-800/80 text-gray-800 dark:text-white hover:bg-purple-600 hover:text-white backdrop-blur-sm"
+              className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 p-3 rounded-full shadow-lg transition-all duration-300 bg-white dark:bg-gray-800 text-gray-800 dark:text-white hover:bg-purple-600 hover:text-white"
             >
               <ChevronRight className="w-6 h-6" />
             </button>
@@ -262,7 +165,7 @@ const Blog: React.FC = () => {
                   }}
                   whileTap={{ scale: 0.98 }}
                 >
-                <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl rounded-2xl border border-gray-200/50 dark:border-gray-700/50 hover:border-purple-300/50 dark:hover:border-purple-600/50 shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden h-full">
+                <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200/50 dark:border-gray-700/50 hover:border-purple-300/50 dark:hover:border-purple-600/50 shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden h-full">
                   {/* Modern gradient overlay */}
                   <motion.div 
                     className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-blue-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"
@@ -273,7 +176,7 @@ const Blog: React.FC = () => {
                   
                   {/* Animated border glow */}
                   <motion.div 
-                    className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-500/20 via-blue-500/20 to-cyan-500/20 opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-500"
+                    className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-500/20 via-blue-500/20 to-cyan-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                     initial={{ opacity: 0 }}
                     whileHover={{ opacity: 1 }}
                     transition={{ duration: 0.3 }}
@@ -295,7 +198,7 @@ const Blog: React.FC = () => {
                     
                     {/* Category overlay on image */}
                     <div className="absolute bottom-3 left-3">
-                      <span className="px-3 py-1 rounded-lg text-xs font-medium bg-white/90 dark:bg-gray-800/90 text-gray-700 dark:text-gray-300 backdrop-blur-sm">
+                      <span className="px-3 py-1 rounded-lg text-xs font-medium bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300">
                         {post.category}
                       </span>
                     </div>

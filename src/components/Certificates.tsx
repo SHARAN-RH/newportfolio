@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Award, ExternalLink, Calendar, CheckCircle } from 'lucide-react';
+import { ExternalLink, Calendar, CheckCircle } from 'lucide-react';
 
 const Certificates: React.FC = () => {
 
@@ -9,9 +9,9 @@ const Certificates: React.FC = () => {
       id: 1,
       title: "Terraform Associate Certification",
       issuer: "KodeKloud",
-      date: "2024",
+      date: "2025",
       credentialId: "TF-ASSOC-2024-001",
-      image: "/api/placeholder/300/200",
+      image: "/Terraform cert.png",
       skills: ["Terraform", "Infrastructure as Code", "DevOps"],
       verifyUrl: "/Terraform cert.pdf",
       description: "Advanced certification in Terraform for infrastructure automation and cloud resource management.",
@@ -21,9 +21,9 @@ const Certificates: React.FC = () => {
       id: 2,
       title: "Mastering Git & GitHub from Basic to Advanced",
       issuer: "Udemy",
-      date: "2024",
+      date: "2025",
       credentialId: "GIT-ADV-2024-002",
-      image: "/api/placeholder/300/200",
+      image: "/Master Git.png",
       skills: ["Git", "GitHub", "Version Control"],
       verifyUrl: "/Mastering Git.pdf",
       description: "Comprehensive course covering Git workflows, branching strategies, and collaborative development.",
@@ -35,7 +35,7 @@ const Certificates: React.FC = () => {
       issuer: "NASSCOM",
       date: "2024",
       credentialId: "PY-PROG-2024-003",
-      image: "/api/placeholder/300/200",
+      image: "/Python.png",
       skills: ["Python", "Programming", "Software Development"],
       verifyUrl: "/Python.pdf",
       description: "Professional certification in Python programming fundamentals and advanced concepts.",
@@ -45,9 +45,9 @@ const Certificates: React.FC = () => {
       id: 4,
       title: "AI Solutions on Cisco Infrastructure Essentials (DCAIE)",
       issuer: "Cisco",
-      date: "2024",
+      date: "2025",
       credentialId: "DCAIE-2024-004",
-      image: "/api/placeholder/300/200",
+      image: "/Cisco DCAIE.png",
       skills: ["AI", "Cisco Infrastructure", "Data Center"],
       verifyUrl: "/Sharan_H_Cisco_DCAIE_Certificate-1.pdf",
       description: "Certification in AI solutions deployment on Cisco data center infrastructure.",
@@ -127,7 +127,7 @@ const Certificates: React.FC = () => {
 
           {/* Certificates Grid */}
           <motion.div 
-            className="grid md:grid-cols-2 gap-6"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -147,7 +147,22 @@ const Certificates: React.FC = () => {
                   {/* Certificate Image */}
                   <div className="relative mb-4 overflow-hidden rounded-xl">
                     <div className="aspect-video bg-gradient-to-br from-purple-100 to-blue-100 dark:from-purple-900/20 dark:to-blue-900/20 flex items-center justify-center">
-                      <Award className="w-12 h-12 text-purple-600 opacity-50" />
+                      <img 
+                        src={cert.image} 
+                        alt={cert.title}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                          const parent = target.parentElement;
+                          if (parent) {
+                            const fallback = document.createElement('div');
+                            fallback.className = 'w-12 h-12 text-purple-600 opacity-50 flex items-center justify-center';
+                            fallback.innerHTML = '<svg class="w-12 h-12" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L3.09 8.26L12 22L20.91 8.26L12 2Z"/></svg>';
+                            parent.appendChild(fallback);
+                          }
+                        }}
+                      />
                     </div>
                     <div className="absolute top-2 right-2">
                       <div className="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-semibold flex items-center gap-1">

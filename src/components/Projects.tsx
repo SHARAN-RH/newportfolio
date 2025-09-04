@@ -143,9 +143,14 @@ const Projects = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
-                    Project Collection
-                  </h3>
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                      Project Collection
+                    </h3>
+                    <span className="text-sm font-medium text-purple-600 dark:text-purple-400 bg-purple-100 dark:bg-purple-900/30 px-3 py-1 rounded-full">
+                      {projects.length} Projects
+                    </span>
+                  </div>
                   <p className="text-gray-600 dark:text-gray-300 text-xs">
                     Select a project to view details {projects.length > 3 && `• Scroll for more (${projects.length} total)`}
                   </p>

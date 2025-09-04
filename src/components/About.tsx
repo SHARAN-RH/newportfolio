@@ -214,7 +214,7 @@ const About = () => {
             className="grid grid-cols-1 md:grid-cols-3 gap-3"
           >
             {[
-              { number: '1+', label: 'Years Experience', color: 'from-blue-600 to-cyan-600' },
+              { number: '1', label: 'Years Experience', color: 'from-blue-600 to-cyan-600' },
               { number: '10+', label: 'Projects Completed', color: 'from-purple-600 to-pink-600' },
               { number: '8+', label: 'Technologies', color: 'from-green-600 to-teal-600' }
             ].map((stat, index) => (

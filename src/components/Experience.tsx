@@ -181,7 +181,7 @@ const Experience: React.FC = () => {
             className="grid grid-cols-1 md:grid-cols-3 gap-3"
           >
             {[
-              { number: '2+', label: 'Years Experience', color: 'from-blue-600 to-cyan-600' },
+              { number: '1', label: 'Years Experience', color: 'from-blue-600 to-cyan-600' },
               { number: '2', label: 'Companies', color: 'from-purple-600 to-pink-600' },
               { number: '3', label: 'Projects Delivered', color: 'from-green-600 to-teal-600' }
             ].map((stat, index) => (
