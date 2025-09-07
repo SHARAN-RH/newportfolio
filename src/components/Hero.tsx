@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Mail, Phone, Github, Linkedin, Download, ChevronDown } from 'lucide-react';
+import { Mail, Phone, Github, Linkedin, Download, ChevronDown, Cloud, Server, GitBranch, Infinity } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useTheme } from '../contexts/ThemeContext';
 import { personalInfo } from '../data/portfolioData';
@@ -197,32 +197,32 @@ const Hero: React.FC = () => {
               {/* Secondary Profile Images - Overlapping */}
               <div className="absolute top-2 right-2 z-30">
                 <div className="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden shadow-lg hover:scale-110 transition-transform duration-300 animate-float border-2 border-white" style={{ animationDelay: '1s' }}>
-                  <div className="w-full h-full rounded-full flex items-center justify-center text-xs font-bold bg-gradient-to-r from-blue-500 to-purple-500 text-white">
-                    JS
+                  <div className="w-full h-full rounded-full flex items-center justify-center bg-gradient-to-r from-orange-500 to-yellow-500 text-white">
+                    <Infinity className="w-5 h-5" />
                   </div>
                 </div>
               </div>
               
               <div className="absolute bottom-2 left-2 z-30">
                 <div className="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden shadow-lg hover:scale-110 transition-transform duration-300 animate-float border-2 border-white" style={{ animationDelay: '1.5s' }}>
-                  <div className="w-full h-full rounded-full flex items-center justify-center text-xs font-bold bg-gradient-to-r from-green-500 to-teal-500 text-white">
-                    TS
+                  <div className="w-full h-full rounded-full flex items-center justify-center bg-gradient-to-r from-green-500 to-teal-500 text-white">
+                    <Server className="w-5 h-5" />
                   </div>
                 </div>
               </div>
               
               <div className="absolute top-12 left-1 z-30">
                 <div className="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden shadow-lg hover:scale-110 transition-transform duration-300 animate-float border-2 border-white" style={{ animationDelay: '2.5s' }}>
-                  <div className="w-full h-full rounded-full flex items-center justify-center text-xs font-bold bg-gradient-to-r from-pink-500 to-red-500 text-white">
-                    RT
+                  <div className="w-full h-full rounded-full flex items-center justify-center bg-gradient-to-r from-blue-500 to-purple-500 text-white">
+                    <Cloud className="w-5 h-5" />
                   </div>
                 </div>
               </div>
 
               <div className="absolute bottom-12 right-1 z-30">
                 <div className="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden shadow-lg hover:scale-110 transition-transform duration-300 animate-float border-2 border-white" style={{ animationDelay: '3s' }}>
-                  <div className="w-full h-full rounded-full flex items-center justify-center text-xs font-bold bg-gradient-to-r from-orange-500 to-yellow-500 text-white">
-                    PY
+                  <div className="w-full h-full rounded-full flex items-center justify-center bg-gradient-to-r from-pink-500 to-red-500 text-white">
+                    <GitBranch className="w-5 h-5" />
                   </div>
                 </div>
               </div>
