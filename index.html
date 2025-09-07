@@ -8,6 +8,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Akronim&display=swap" rel="stylesheet">
+    <script>
+      // Prevent flash of dark content by ensuring light mode is default
+      (function() {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+          if (!savedTheme) {
+            localStorage.setItem('theme', 'light');
+          }
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
