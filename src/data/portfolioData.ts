@@ -231,10 +231,9 @@ export const experience = [
     location: "Canada (Remote)",
     period: "Jan 2025 - Present",
     achievements: [
-      "Assisted in migrating legacy applications to containerized architecture using Docker",
-      "Participated in infrastructure automation projects with Ansible and Terraform",
-      "Gained hands-on experience with Kubernetes cluster management and deployment",
-      "Contributed to monitoring and alerting setup using Prometheus and Grafana"
+      "Deployed containerized environments with Docker and orchestrated scalable workflows through Kubernetes, integrating network topology log files to ensure consistent builds and stable deployments for multiple project modules throughout the internship.",
+      "Automated Infrastructure configurations with Ansible Playbooks and enhanced system observability using the TIG and ELK stacks, leveraging network logs to proactively detect bottlenecks and maintain peak performance during development sprints.",
+      " Explored intelligent automation solutions by studying Agentic and Cisco DCAIE frameworks, translating research insights into actionable proposals that elevated system reliability and scalability during the internship phase.",
     ]
   },
   {
@@ -243,10 +242,9 @@ export const experience = [
     location: "Chennai, TN",
     period: "April 2024 - Sep 2024",
     achievements: [
-      "Developed IoT data pipeline using Python and AWS services, processing 10K+ sensor readings daily",
-      "Implemented Docker containerization for IoT applications, reducing deployment time by 60%",
-      "Created automated monitoring dashboards with Grafana, improving system visibility by 40%",
-      "Collaborated with DevOps team to establish CI/CD practices for IoT deployments"
+      "Designed and implemented a scalbale IoT architecture for smart switches, ensuring seamless hardware-software integration",
+      "Developed user-friendly applications for remote control and monitoring, enhancing user experience and functionality",
+      "Streamlined communication protocols to ensure reliable and consistent connectivity across IoT devices in the network.",
     ]
   }
 ];
