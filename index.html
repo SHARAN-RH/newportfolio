@@ -10,11 +10,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Akronim&display=swap" rel="stylesheet">
     <script>
       // Prevent flash of dark content by ensuring light mode is default
+      // Override system dark mode preference
       (function() {
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'dark') {
           document.documentElement.classList.add('dark');
         } else {
+          // Force light mode regardless of system preference
           document.documentElement.classList.remove('dark');
           if (!savedTheme) {
             localStorage.setItem('theme', 'light');

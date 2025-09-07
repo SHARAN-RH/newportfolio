@@ -23,7 +23,8 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     if (savedTheme) {
       setIsDark(savedTheme === 'dark');
     } else {
-      // Ensure light mode is set as default and saved to localStorage
+      // Override system preference - always default to light mode
+      // Explicitly set light mode regardless of system preference
       localStorage.setItem('theme', 'light');
       setIsDark(false);
     }
