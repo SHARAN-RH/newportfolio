@@ -13,7 +13,7 @@ const Certificates: React.FC = () => {
       credentialId: "TF-ASSOC-2024-001",
       image: "/Terraform cert.png",
       skills: ["Terraform", "Infrastructure as Code", "DevOps"],
-      verifyUrl: "/Terraform cert.pdf",
+      verifyUrl: "/Terraform.pdf",
       description: "Advanced certification in Terraform for infrastructure automation and cloud resource management.",
       position: "1st place"
     },
