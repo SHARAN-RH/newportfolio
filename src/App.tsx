@@ -75,7 +75,7 @@ const AppContent: React.FC = () => {
               </div>
               <div className="w-8 h-px bg-gradient-to-r from-purple-500 to-blue-500"></div>
               <span className="text-xs font-mono text-gray-500 dark:text-gray-400 tracking-wider uppercase">
-                Sep 2025
+                Dec 2025
               </span>
             </motion.div>
           </main>
