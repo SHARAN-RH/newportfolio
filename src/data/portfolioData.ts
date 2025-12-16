@@ -226,7 +226,7 @@ export const projects = [
 
 export const experience = [
   {
-    title: "Junior Developer Intern",
+    title: "Junior Developer",
     company: "ONIR Technologies",
     location: "Canada (Remote)",
     period: "Jan 2025 - Present",
